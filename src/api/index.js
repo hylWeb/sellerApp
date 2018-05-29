@@ -1,5 +1,5 @@
 // 配置API接口地址
-var root = 'https://cnodejs.org/api/v1'
+var root = '/api/ycj'
 // 引用axios
 var axios = require('axios')
 // 自定义判断元素类型JS
@@ -45,7 +45,8 @@ function apiAxios (method, url, params, success, failure) {
     withCredentials: false
   })
     .then(function (res) {
-      if (res.data.success === true) {
+      console.log(res);
+      if (res.statusText === 'OK') {
         if (success) {
           success(res.data)
       }
@@ -58,9 +59,9 @@ function apiAxios (method, url, params, success, failure) {
     }
   })
   .catch(function (err) {
-    let res = err.response
+   // let res = err.response
     if (err) {
-      window.alert('api error, HTTP CODE: ' + res.status)
+      window.alert('api error, HTTP CODE: ' + err)
     }
   })
 }

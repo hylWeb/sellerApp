@@ -8,10 +8,22 @@ import router from './router'
 import api from './api/index.js'
 // 将API方法绑定到全局
 Vue.prototype.$api = api
+// 引用工具文件
+import utils from './utils/index.js'
+// 将工具方法绑定到全局
+Vue.prototype.$utils = utils
+
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+Vue.use(MintUI);
+Vue.use(MuseUI)
+
 new Vue({
   el: '#app',
   router,

@@ -3,13 +3,15 @@
   <mu-paper :z-depth="1" class="demo-list-wrap">
     <mu-appbar color="primary">
       <mu-button icon slot="left">
-        <mu-icon value="menu"></mu-icon>
-      </mu-button>
-     XXXXXXX
+        <mu-icon value="person_pin"></mu-icon>
+      </mu-button> 
+  
+       <mu-text-field placeholder="请输入姓名或电话号码"></mu-text-field> 
       <mu-button icon slot="right">
         <mu-icon value="search"></mu-icon>
       </mu-button>
     </mu-appbar>
+ 
     <mu-list textline="two-line" toggle-nested>
       <v-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
         <div  v-for="(item, index) in proCopyright">
@@ -65,6 +67,8 @@ export default {
       totalpage:0,
       loading:false,
       bottomText: '',
+
+      value:""
     }
   },
   mounted(){
@@ -137,5 +141,15 @@ export default {
   width: 100%;
   max-width: 360px;
   overflow: hidden;
+}
+.mu-input-content{
+    width:80%;
+}
+.mu-text-field-input{
+  margin-left: 5px;
+  background: #fff;
+    border-radius: 9px;
+    width: 60%;
+   
 }
 </style>

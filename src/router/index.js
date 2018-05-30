@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/page/index'
 import Content from '@/page/content'
 import List from '@/page/list'
+import Add from '@/page/add'
 
 Vue.use(Router)
 
@@ -17,6 +18,10 @@ export default new Router({
     }, {
       path: '/list',
       component: List
+    }, {
+      path: '/add',
+      component: Add
     }
+
   ]
 })

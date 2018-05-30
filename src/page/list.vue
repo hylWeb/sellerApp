@@ -2,16 +2,16 @@
   <div>
   <!--  <Header></Header> -->
    <List></List>
-   <Footer></Footer>
+   <Add></Add> 
   </div>
 </template>
 
 <script>
 import Header from '../components/header.vue'
-import Footer from '../components/footer.vue'
+import Add from '../components/add-button.vue'
 import List from '../components/list.vue'
 export default {
-  components: { Header,List, Footer },
+  components: { Header,List, Add },
 
 }
 </script>

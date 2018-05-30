@@ -1,51 +1,52 @@
 <template>
  <div class="main-body" :style="{'-webkit-overflow-scrolling': scrollMode}">
-  <!--   <v-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
-      <ul class="list">
+  <mu-paper :z-depth="1" class="demo-list-wrap">
+    <mu-appbar color="primary">
+      <mu-button icon slot="left">
+        <mu-icon value="menu"></mu-icon>
+      </mu-button>
+     XXXXXXX
+      <mu-button icon slot="right">
+        <mu-icon value="search"></mu-icon>
+      </mu-button>
+    </mu-appbar>
+    <mu-list textline="two-line" toggle-nested>
+      <v-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
+        <div  v-for="(item, index) in proCopyright">
+          <mu-list-item button :ripple="false" nested :open="false" @toggle-nested="open = ''">
+            <mu-list-item-content>
+              <mu-list-item-title>{{item.platNumber}}</mu-list-item-title>
+              <mu-list-item-sub-title style="color: rgba(0, 0, 0, .87)">{{item.bookerMobile}}</mu-list-item-sub-title>
+              <mu-list-item-sub-title>
+               物流单号：47834412121
+              </mu-list-item-sub-title>
+            </mu-list-item-content>
+            <mu-list-item-action >
+              <mu-list-item-after-text>已支付</mu-list-item-after-text>
+              <mu-icon class="toggle-icon" size="24" value="keyboard_arrow_down"></mu-icon>
+            </mu-list-item-action>
 
-          <li v-for="(item, index) in proCopyright">
-            <div>{{item.id}}</div>
-          </li>
+            <!-- 子列表，要显示的-->
+            <mu-list-item button :ripple="false" slot="nested">
+               <mu-list-item-content>
 
-      </ul>
-    </v-loadmore> -->
+                <mu-list-item-sub-title>SHIJIAN ——> qidjskfnjdjnfdgjnfjgn</mu-list-item-sub-title>
+                <mu-list-item-sub-title>SHIJIAN ——> qidjskfnjdjnfdgjnfjgn</mu-list-item-sub-title>
+                <mu-list-item-sub-title>SHIJIAN ——> qidjskfnjdjnfdgjnfjgn</mu-list-item-sub-title>
 
+              </mu-list-item-content>
+           </mu-list-item>
 
-<mu-paper :z-depth="1" class="demo-list-wrap">
-  <mu-appbar color="pink">
-    <mu-button icon slot="left">
-      <mu-icon value="menu"></mu-icon>
-    </mu-button>
-    我的订单
-    <mu-button icon slot="right">
-      <mu-icon value="search"></mu-icon>
-    </mu-button>
-  </mu-appbar>
-  <mu-list textline="two-line">
-    <v-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
-      <div  v-for="(item, index) in proCopyright">
-        <mu-list-item avatar :ripple="false" button>
-          <mu-list-item-content>
-            <mu-list-item-title>{{item.platNumber}}</mu-list-item-title>
-            <mu-list-item-sub-title style="color: rgba(0, 0, 0, .87)">{{item.bookerMobile}}</mu-list-item-sub-title>
-            <mu-list-item-sub-title>
-             物流单号：47834412121
-            </mu-list-item-sub-title>
-          </mu-list-item-content>
-          <mu-list-item-action >
-            <mu-list-item-after-text>已支付</mu-list-item-after-text>
-            <mu-icon class="toggle-icon" size="24" value="keyboard_arrow_down"></mu-icon>
-          </mu-list-item-action>
-      </mu-list-item>
-      <mu-divider></mu-divider>
-    </div>
+        </mu-list-item>
 
+        <mu-divider></mu-divider>
+      </div>
+ 
     </v-loadmore>
 
-  </mu-list>
-</mu-paper>
-
-  </div> 
+    </mu-list>
+  </mu-paper>
+ </div> 
 </template>
 
 <script>
@@ -57,7 +58,7 @@ export default {
   data () {
     return {
       pageNo:1,
-      pageSize:10,
+      pageSize:3,
       proCopyright:[],
       allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了
       scrollMode:"auto", //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
@@ -130,11 +131,7 @@ export default {
 
 <style scoped>
   @import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css';
-  /*  li{
-      padding:30px 0;
-      background-color: #ccc;
-      margin-bottom:20px;
-    }*/
+
 
 .demo-list-wrap {
   width: 100%;

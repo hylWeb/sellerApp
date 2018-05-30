@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scope>
-   body {
+   body1 {
         background-image: url(../../static/image/background.jpg);
         background-repeat: no-repeat;
         background-position: center;

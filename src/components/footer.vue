@@ -8,8 +8,7 @@
 	.copy{
 		height:30px;
 		text-align:center;
-		/*background:#26a2ff;*/
-		color:#ffffff;
+		color:black;
 		left: 0;
 		bottom: 0;
 		width: 100%;

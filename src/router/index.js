@@ -4,6 +4,9 @@ import Index from '@/page/index'
 import Content from '@/page/content'
 import List from '@/page/list'
 import Add from '@/page/add'
+import Register from '@/page/register'
+import UpdatePass from '@/page/updatePass'
+
 
 Vue.use(Router)
 
@@ -21,6 +24,13 @@ export default new Router({
     }, {
       path: '/add',
       component: Add
+    }
+    , {
+      path: '/register',
+      component: Register
+    }, {
+      path: '/update-pass',
+      component: UpdatePass
     }
 
   ]

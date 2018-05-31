@@ -78,7 +78,7 @@ export default {
     loadBottom:function() {
       // 上拉加载
       this.more();// 上拉触发的分页查询
-      this.$refs.loadmore.onBottomLoaded();// 固定方法，查询完要调用一次，用于重新定位
+     // this.$refs.loadmore.onBottomLoaded();// 固定方法，查询完要调用一次，用于重新定位
     },
     loadPageList:function (){
       // 查询数据
@@ -92,7 +92,7 @@ export default {
 
           this.$nextTick(function () {
           // 是否还有下一页，加个方法判断，没有下一页要禁止上拉
-          this.scrollMode = "touch";
+         this.scrollMode = "touch";
           this.isHaveMore();
         });
         
@@ -140,7 +140,7 @@ export default {
 .demo-list-wrap {
   width: 100%;
   max-width: 360px;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .mu-input-content{
     width:80%;

@@ -1,12 +1,12 @@
 <template>
  <div class="main-body" :style="{'-webkit-overflow-scrolling': scrollMode}">
   <mu-paper :z-depth="1" class="demo-list-wrap">
-    <mu-appbar color="primary">
+    <mu-appbar color="tealA700">
       <mu-button icon slot="left">
         <mu-icon value="person_pin"></mu-icon>
       </mu-button> 
   
-       <mu-text-field placeholder="请输入姓名或电话号码"></mu-text-field> 
+       <mu-text-field color="grey50" placeholder="请输入姓名或电话号码"></mu-text-field> 
       <mu-button icon slot="right">
         <mu-icon value="search"></mu-icon>
       </mu-button>

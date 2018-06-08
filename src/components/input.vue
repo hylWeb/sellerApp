@@ -2,15 +2,16 @@
 <template>
 	
   <mu-container>
-	  <mu-select  placeholder="请选择商品种类"  v-model="normal.value1" icon="check_circle_outline">
+	  <mu-select  placeholder="请选择商品种类"  v-model="normal.value1" icon="check_circle_outline" color="tealA700" >
 	  	<mu-option v-for="(option,index) in options" :key="option" :label="option" :value="option"></mu-option>
 	  </mu-select> 
 
-	  <mu-text-field type="number" label="请输入商品数量" label-float help-text="购买的数量"  icon="add_shopping_cart"></mu-text-field><br/>
-	  <mu-text-field label="请输入姓名" label-float help-text="谨慎填写，用户可用姓名查询运单号" icon="account_circle"></mu-text-field><br/>
-	  <mu-text-field label="请输入手机号" label-float help-text="电话号码务必填写正确" icon="phone"></mu-text-field><br/>
-	  <mu-text-field label-float help-text="请输入收获地址"  icon="account_balance" multi-line :rows="2" full-width></mu-text-field><br/>
-	  <mt-button type="primary" size="large" v-on:click="add">添加</mt-button>
+	  <mu-text-field type="number" label="请输入商品数量" label-float help-text="购买的数量"  icon="add_shopping_cart" color="tealA700" ></mu-text-field><br/>
+	  <mu-text-field label="请输入姓名" label-float help-text="谨慎填写，用户可用姓名查询运单号" icon="account_circle" color="tealA700" ></mu-text-field><br/>
+	  <mu-text-field label="请输入手机号" label-float help-text="电话号码务必填写正确" icon="phone" color="tealA700" ></mu-text-field><br/>
+	  <mu-text-field label-float help-text="请输入收获地址"  icon="account_balance" multi-line :rows="2" color="tealA700" full-width></mu-text-field><br/>
+	  <!-- <mt-button type="primary" color="" size="large" v-on:click="add"></mt-button> -->
+    <mu-button full-width  color="tealA700" v-on:click="add">添加</mu-button>
 </mu-container>
 </template>
 
@@ -54,9 +55,9 @@ export default {
 <style scoped>
 	  @import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css';
 	  .container{
-	  	margin-top: 60px;
+	  	margin-top: 30px;
 	  }
-	  .mint-button{
+	  .mu-button{
 	  	margin-top: 20px;
 	  }
 </style>

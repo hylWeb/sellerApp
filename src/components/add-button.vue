@@ -1,5 +1,5 @@
 <template>
-  <mu-button class="add_button" large fab color="primary" @click="addUI">
+  <mu-button class="add_button" large fab color="tealA700" @click="addUI">
     <mu-icon  value="add"></mu-icon>
   </mu-button>
 </template>

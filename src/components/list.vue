@@ -15,16 +15,16 @@
     <mu-list textline="two-line" toggle-nested>
       <v-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
         <div  v-for="(item, index) in proCopyright">
-          <mu-list-item button :ripple="false" nested :open="false" @toggle-nested="open = ''">
-            <mu-list-item-content>
-              <mu-list-item-title>{{item.platNumber}}</mu-list-item-title>
-              <mu-list-item-sub-title style="color: rgba(0, 0, 0, .87)">{{item.bookerMobile}}</mu-list-item-sub-title>
+          <mu-list-item  button :ripple="false" nested :open="false" @toggle-nested="open = ''" >
+            <mu-list-item-content v-on:click="getTrace(item.id)">
+              <mu-list-item-title>{{item.name}}</mu-list-item-title>
+              <mu-list-item-sub-title style="color: rgba(0, 0, 0, .87)">{{item.moblie}}</mu-list-item-sub-title>
               <mu-list-item-sub-title>
-               物流单号：47834412121
+               物流单号：{{item.expressNumber}}
               </mu-list-item-sub-title>
             </mu-list-item-content>
-            <mu-list-item-action >
-              <mu-list-item-after-text>已支付</mu-list-item-after-text>
+            <mu-list-item-action v-on:click="getTrace(item.id)">
+              <mu-list-item-after-text>{{item.state}}</mu-list-item-after-text>
               <mu-icon class="toggle-icon" size="24" value="keyboard_arrow_down"></mu-icon>
             </mu-list-item-action>
 
@@ -67,14 +67,17 @@ export default {
       totalpage:0,
       loading:false,
       bottomText: '',
-
-      value:""
+      value:"",
+      traces:[]  //快递轨迹
     }
   },
   mounted(){
     this.loadPageList();  //初次访问查询列表
   },
   methods:{
+    getTrace:function(id){  //获取快递轨迹
+      console.log(id);
+    },
     loadBottom:function() {
       // 上拉加载
       this.more();// 上拉触发的分页查询
@@ -84,7 +87,7 @@ export default {
       // 查询数据
       this.$api.get('/list?pageSize='+this.pageSize+'&currentPage='+this.pageNo , null, r => {
         console.log(r);
-         this.proCopyright = r.list;
+         this.proCopyright = r.result.list;
          this.totalpage = r.pages;
          if(this.totalpage == 1){
             this.allLoaded = true;
@@ -113,7 +116,7 @@ export default {
 
       this.$api.get('/list?pageSize='+this.pageSize+'&currentPage='+this.pageNo , null, r => {
         console.log(r);
-         this.proCopyright =  this.proCopyright.concat(r.list);
+         this.proCopyright =  this.proCopyright.concat(r.result.list);
     
         console.log(this.proCopyright);
         this.isHaveMore();

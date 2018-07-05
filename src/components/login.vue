@@ -9,7 +9,7 @@
 
           <!--   <form class="m-t" role="form" action="http://www.zi-han.net/theme/hplus/index.html"> -->
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="手机号" v-model="ruleForm.userName" required="">
+                    <input type="email" class="form-control" placeholder="手机号或用户名" v-model="ruleForm.userName" required="">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="密码" v-model="ruleForm.password" required="">
@@ -52,7 +52,9 @@ export default {
       	//传入后台
       	this.$api.post('login', this.ruleForm, r => {
        		console.log(r);
-          if(r.userName != null && r.userName != 'undefined'){
+          var code = r.code;
+          if(code == '1'){  //成功
+             if(r.result.userName != null && r.result.userName != 'undefined'){
                  //传入账号名，密码，和保存天数3个参数
                   this.setCookie(name,pass,7);
                   this.$router.push({ path: '/list' }) 
@@ -62,6 +64,10 @@ export default {
                   this.username=''
                   this.password= ''
             }
+          }else{
+            alert(r.message);
+          }
+     
      	 })
       },
       //设置cookie

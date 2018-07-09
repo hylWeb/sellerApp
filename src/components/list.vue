@@ -12,31 +12,29 @@
       </mu-button>
     </mu-appbar>
  
-    <mu-list textline="two-line" toggle-nested>
+    <mu-list  toggle-nested>
       <v-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
         <div  v-for="(item, index) in proCopyright">
-          <mu-list-item  button :ripple="false" nested :open="false" @toggle-nested="open = ''" >
-            <mu-list-item-content v-on:click="getTrace(item.id)">
+          <mu-list-item  button="" :ripple="false" nested :open="open === item.id" @toggle-nested="open = arguments[0] ? item.id : ''" >
+        
+            <mu-list-item-content v-on:click="getTrace(item.id,item.expressNumber)" :value="item.id">
               <mu-list-item-title>{{item.name}}</mu-list-item-title>
               <mu-list-item-sub-title style="color: rgba(0, 0, 0, .87)">{{item.moblie}}</mu-list-item-sub-title>
               <mu-list-item-sub-title>
                物流单号：{{item.expressNumber}}
               </mu-list-item-sub-title>
             </mu-list-item-content>
-            <mu-list-item-action v-on:click="getTrace(item.id)">
+            <mu-list-item-action v-on:click="getTrace(item.id,item.expressNumber)">
               <mu-list-item-after-text>{{item.state}}</mu-list-item-after-text>
               <mu-icon class="toggle-icon" size="24" value="keyboard_arrow_down"></mu-icon>
             </mu-list-item-action>
 
             <!-- 子列表，要显示的-->
-            <mu-list-item button :ripple="false" slot="nested">
-               <mu-list-item-content>
-
-                <mu-list-item-sub-title>SHIJIAN ——> qidjskfnjdjnfdgjnfjgn</mu-list-item-sub-title>
-                <mu-list-item-sub-title>SHIJIAN ——> qidjskfnjdjnfdgjnfjgn</mu-list-item-sub-title>
-                <mu-list-item-sub-title>SHIJIAN ——> qidjskfnjdjnfdgjnfjgn</mu-list-item-sub-title>
-
-              </mu-list-item-content>
+            <mu-list-item  style="margin-left: 0px;" button :ripple="false" slot="nested"  v-for="(item,index) in traces" class="sublist">
+             <!--   <mu-list-item-content >
+                <mu-list-item-sub-title v-for="(item,index) in traces">{{item.acceptTime}} : {{item.acceptStation}}</mu-list-item-sub-title>
+              </mu-list-item-content> -->
+               <mu-list-item-title style="margin-left: 0px;" class="sublist_text">{{item.acceptTime}} : {{item.acceptStation}}</mu-list-item-title>
            </mu-list-item>
 
         </mu-list-item>
@@ -75,8 +73,25 @@ export default {
     this.loadPageList();  //初次访问查询列表
   },
   methods:{
-    getTrace:function(id){  //获取快递轨迹
-      console.log(id);
+    getTrace:function(id,expressNumber){ 
+        console.log(expressNumber);
+     //获取快递轨迹
+     if (expressNumber == '' || expressNumber == null ) {
+      this.traces = [{acceptTime:'暂未发货，无物流信息'}];
+       // alert("");
+     }else{
+           console.log(id);
+        this.$api.get('/getTrace?orderId='+id , null, r => {
+        console.log(r);
+        if(r.code == '1'){
+           this.traces = r.result.traces;
+        }else{
+          alert(r.message);
+        }
+        
+      })
+     }
+ 
     },
     loadBottom:function() {
       // 上拉加载
@@ -86,9 +101,9 @@ export default {
     loadPageList:function (){
       // 查询数据
       this.$api.get('/list?pageSize='+this.pageSize+'&currentPage='+this.pageNo , null, r => {
-        console.log(r);
+        console.log(r.result);
          this.proCopyright = r.result.list;
-         this.totalpage = r.pages;
+         this.totalpage = r.result.pages;
          if(this.totalpage == 1){
             this.allLoaded = true;
         }
@@ -115,7 +130,7 @@ export default {
       console.log(this.pageNo);
 
       this.$api.get('/list?pageSize='+this.pageSize+'&currentPage='+this.pageNo , null, r => {
-        console.log(r);
+        console.log(r.result);
          this.proCopyright =  this.proCopyright.concat(r.result.list);
     
         console.log(this.proCopyright);
@@ -154,5 +169,11 @@ export default {
     border-radius: 9px;
     width: 60%;
    
+}
+.sublist{
+  height: 20px;
+}
+.sublist_text{
+  font-size: 10px;
 }
 </style>

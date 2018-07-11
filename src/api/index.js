@@ -46,7 +46,7 @@ function apiAxios (method, url, params, success, failure) {
   })
     .then(function (res) {
      // console.log(res);
-      if (res.statusText === 'OK') {
+      if (res.status === 200) {
         if (success) {
           success(res.data)
       }

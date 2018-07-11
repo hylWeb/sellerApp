@@ -152,13 +152,12 @@ export default {
 </script>
 
 <style scoped>
-  @import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css';
-
+ @import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css'; 
 
 .demo-list-wrap {
   width: 100%;
   max-width: 360px;
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
 .mu-input-content{
     width:80%;
@@ -170,10 +169,10 @@ export default {
     width: 60%;
    
 }
-.sublist{
+/*.sublist{
   height: 20px;
-}
+}*/
 .sublist_text{
-  font-size: 10px;
+  font-size: 11px;
 }
 </style>
